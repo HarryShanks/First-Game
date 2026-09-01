@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://beqjcigeqow1l"]
 
 [ext_resource type="PackedScene" uid="uid://cbx0bpxahiois" path="res://Scenes/Level_1.tscn" id="1_wrm1d"]
-[ext_resource type="PackedScene" uid="uid://g7k0dw4hf3pb" path="res://test/test_player.tscn" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dkxoj5r4g6o40" path="res://Scenes/platform.tscn" id="2_wowpa"]
 [ext_resource type="Texture2D" uid="uid://hlclfoosa5ks" path="res://Assets/sprites/world_tileset.png" id="3_wowpa"]
 [ext_resource type="Texture2D" uid="uid://dvfn8modq5ptn" path="res://Assets/sprites/knight.png" id="5_wowpa"]
@@ -43,16 +42,34 @@ _data = {
 &"move": SubResource("Animation_wowpa")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ffb7c"]
-radius = 7.7734222
+[sub_resource type="GDScript" id="GDScript_nfm0u"]
+resource_name = "Character_Movement"
+script/source = "extends CharacterBody2D
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bego8"]
-animations = [{
-"frames": [],
-"loop": 1,
-"name": &"Idle",
-"speed": 10.0
-}]
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wowpa"]
 atlas = ExtResource("5_wowpa")
@@ -427,41 +444,24 @@ position = Vector2(459, -40)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level 1/Platform" unique_id=1298445266]
 libraries/ = SubResource("AnimationLibrary_i6g32")
-autoplay = &"move"
 
-[node name="Player" parent="Level 1" unique_id=977762971 instance=ExtResource("2_3dryh")]
-scale = Vector2(0.243, 0.25)
+[node name="Player" type="CharacterBody2D" parent="Level 1" unique_id=2130166955]
+z_index = 5
+position = Vector2(459, -40)
+script = SubResource("GDScript_nfm0u")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level 1/Player" unique_id=86952922]
-position = Vector2(-90.71187, 35.991417)
-scale = Vector2(0.97245765, 1.0000001)
-shape = SubResource("CircleShape2D_ffb7c")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Player" unique_id=934854568]
-position = Vector2(-90.53498, 12)
-scale = Vector2(2.8485165, 2.299571)
-sprite_frames = SubResource("SpriteFrames_bego8")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Player" unique_id=1598054120]
+position = Vector2(-441, 34)
+sprite_frames = SubResource("SpriteFrames_nfm0u")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Camera2D2" type="Camera2D" parent="Level 1/Player" unique_id=219697768]
-
-[node name="Player2" type="CharacterBody2D" parent="Level 1" unique_id=2130166955]
-z_index = 5
-position = Vector2(459, -40)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Player2" unique_id=1598054120]
-position = Vector2(-123, -46)
-sprite_frames = SubResource("SpriteFrames_nfm0u")
-animation = &"Dead"
-frame = 1
-frame_progress = 0.9340262
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Player2" unique_id=1342141354]
-position = Vector2(-123, -43)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Player" unique_id=1342141354]
+position = Vector2(-441, 36)
 shape = SubResource("CapsuleShape2D_nfm0u")
 
-[node name="Camera2D" type="Camera2D" parent="Level 1/Player2" unique_id=1896530671]
+[node name="Camera2D" type="Camera2D" parent="Level 1/Player" unique_id=1896530671]
+position = Vector2(-441, 34)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
