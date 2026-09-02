@@ -444,6 +444,17 @@ texture = ExtResource("3_wowpa")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
+[sub_resource type="GDScript" id="GDScript_wowpa"]
+resource_name = "Coin"
+script/source = "extends Area2D
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()
+	print(\"Coin Collected\")
+	
+"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwurv"]
 atlas = ExtResource("5_i6g32")
 region = Rect2(0, 0, 16, 16)
@@ -533,14 +544,37 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Coin Flipping",
-"speed": 5.0
+"speed": 7.5
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bego8"]
 radius = 6.0
 
+[sub_resource type="GDScript" id="GDScript_i6g32"]
+resource_name = "Coin_2"
+script/source = "extends Area2D
+
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()
+	print(\"Coin Collected\")
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vm02"]
 radius = 6.0
+
+[sub_resource type="GDScript" id="GDScript_vijes"]
+resource_name = "Coin_3"
+script/source = "extends Area2D
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()
+	print(\"Coin Collected\")
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x47vt"]
 radius = 6.0
@@ -561,6 +595,7 @@ libraries/ = SubResource("AnimationLibrary_i6g32")
 [node name="Player" type="CharacterBody2D" parent="Level 1" unique_id=2130166955]
 z_index = 5
 position = Vector2(459, -40)
+collision_layer = 2
 script = SubResource("GDScript_nfm0u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Player" unique_id=1598054120]
@@ -568,7 +603,7 @@ position = Vector2(-441, 34)
 sprite_frames = SubResource("SpriteFrames_nfm0u")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.05862877
+frame_progress = 0.5187005
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Player" unique_id=1342141354]
 position = Vector2(-441, 36)
@@ -586,6 +621,8 @@ tile_set = SubResource("TileSet_nfm0u")
 
 [node name="Coin" type="Area2D" parent="Level 1" unique_id=771675323]
 position = Vector2(436, 130)
+collision_mask = 2
+script = SubResource("GDScript_wowpa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Coin" unique_id=1481549709]
 sprite_frames = SubResource("SpriteFrames_vijes")
@@ -597,6 +634,8 @@ shape = SubResource("CircleShape2D_bego8")
 
 [node name="Coin2" type="Area2D" parent="Level 1" unique_id=294098391]
 position = Vector2(500, 130)
+collision_mask = 2
+script = SubResource("GDScript_i6g32")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Coin2" unique_id=429712750]
 sprite_frames = SubResource("SpriteFrames_vijes")
@@ -608,6 +647,8 @@ shape = SubResource("CircleShape2D_1vm02")
 
 [node name="Coin3" type="Area2D" parent="Level 1" unique_id=1664728023]
 position = Vector2(1079, 0)
+collision_mask = 2
+script = SubResource("GDScript_vijes")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Coin3" unique_id=1090538735]
 sprite_frames = SubResource("SpriteFrames_vijes")
@@ -636,3 +677,7 @@ rotation = 4.712389
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right Boundary" unique_id=1845820153]
 shape = SubResource("WorldBoundaryShape2D_nfm0u")
+
+[connection signal="body_entered" from="Level 1/Coin" to="Level 1/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="Level 1/Coin2" to="Level 1/Coin2" method="_on_body_entered"]
+[connection signal="body_entered" from="Level 1/Coin3" to="Level 1/Coin3" method="_on_body_entered"]
