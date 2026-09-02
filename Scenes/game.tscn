@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbx0bpxahiois" path="res://Scenes/Level_1.tscn" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dkxoj5r4g6o40" path="res://Scenes/platform.tscn" id="2_wowpa"]
 [ext_resource type="Texture2D" uid="uid://hlclfoosa5ks" path="res://Assets/sprites/world_tileset.png" id="3_wowpa"]
+[ext_resource type="Texture2D" uid="uid://cjbdxkwp8iiq3" path="res://Assets/sprites/coin.png" id="5_i6g32"]
 [ext_resource type="Texture2D" uid="uid://dvfn8modq5ptn" path="res://Assets/sprites/knight.png" id="5_wowpa"]
 
 [sub_resource type="Animation" id="Animation_3dryh"]
@@ -443,6 +444,107 @@ texture = ExtResource("3_wowpa")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwurv"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mucmn"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m3t6"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ese38"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeip8"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe308"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3cha"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i26dy"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmoi6"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uxt2"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym3tv"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwj6o"]
+atlas = ExtResource("5_i6g32")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vijes"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwurv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mucmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m3t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ese38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeip8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe308")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3cha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i26dy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmoi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uxt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym3tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwj6o")
+}],
+"loop": 1,
+"name": &"Coin Flipping",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bego8"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vm02"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x47vt"]
+radius = 6.0
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nfm0u"]
 distance = -1044.0
 
@@ -466,7 +568,7 @@ position = Vector2(-441, 34)
 sprite_frames = SubResource("SpriteFrames_nfm0u")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.550794
+frame_progress = 0.05862877
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Player" unique_id=1342141354]
 position = Vector2(-441, 36)
@@ -481,6 +583,39 @@ position_smoothing_enabled = true
 position = Vector2(155, -34)
 tile_map_data = PackedByteArray("AAAPAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAAUAAMAAAAAAAAAAAAUAAQAAAAAAAAAAAAVAAQAAAAAAAAAAAAWAAQAAAAAAAAAAAAXAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAZAAkAAAAAAAAAAAAaAAkAAAAAAAAAAAAiAAcAAAAAAAAAAAAjAAcAAAAAAAAAAAA8AAYAAAAAAAAAAAA9AAYAAAAAAAAAAAD0/wMAAAAAAAAAAAD1/wMAAAAAAAAAAAD2/wMAAAAAAAAAAAD3/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD7/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAABAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAABAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAABAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAABAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAABAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAABAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAABAAAAAAAKAAcAAAABAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAABAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAABAAAAAAANAAYAAAAAAAAAAAANAAcAAAABAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAABAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAgAAAAEAAIAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAgAAAAEAAIAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAQAAAAAAAAAAAAZAAoAAAAAAAAAAAAaAAQAAAAAAAAAAAAaAAgAAAAAAAAAAAAbAAcAAAAAAAAAAAAbAAgAAAAAAAAAAAAcAAcAAAAAAAAAAAAdAAcAAAAAAAAAAAAeAAcAAAAAAAAAAAAfAAcAAAAAAAAAAAAgAAcAAAAAAAAAAAAhAAcAAAAAAAAAAAAkAAcAAAAAAAAAAAAlAAcAAAAAAAAAAAAmAAcAAAAAAAAAAAAnAAcAAAAAAAAAAAAoAAcAAAAAAAAAAAApAAcAAAAAAAAAAAAqAAgAAAAAAAAAAAArAAgAAAAAAAAAAAAsAAgAAAAAAAAAAAAtAAkAAAAAAAAAAAAuAAkAAAAAAAAAAAAvAAoAAAAAAAAAAAAwAAoAAAAAAAAAAAAxAAoAAAAAAAAAAAAyAAkAAAAAAAAAAAAzAAgAAAAAAAAAAAA0AAgAAAAAAAAAAAA1AAcAAAAAAAAAAAA2AAYAAAAAAAAAAAA3AAYAAAAAAAAAAAA7AAYAAAAAAAAAAAA+AAYAAAAAAAAAAAA/AAYAAAAAAAAAAABAAAYAAAAAAAAAAABBAAYAAAAAAAAAAABCAAIAAAAAAAAAAABCAAMAAAAAAAAAAABCAAQAAAAAAAAAAABCAAUAAAAAAAAAAABCAAYAAAAAAAAAAABDAAIAAAAAAAAAAABDAAMAAAAAAAAAAABDAAQAAAAAAAAAAABDAAUAAAAAAAAAAABDAAYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_nfm0u")
+
+[node name="Coin" type="Area2D" parent="Level 1" unique_id=771675323]
+position = Vector2(436, 130)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Coin" unique_id=1481549709]
+sprite_frames = SubResource("SpriteFrames_vijes")
+animation = &"Coin Flipping"
+autoplay = "Coin Flipping"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Coin" unique_id=1250327069]
+shape = SubResource("CircleShape2D_bego8")
+
+[node name="Coin2" type="Area2D" parent="Level 1" unique_id=294098391]
+position = Vector2(500, 130)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Coin2" unique_id=429712750]
+sprite_frames = SubResource("SpriteFrames_vijes")
+animation = &"Coin Flipping"
+autoplay = "Coin Flipping"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Coin2" unique_id=1412900584]
+shape = SubResource("CircleShape2D_1vm02")
+
+[node name="Coin3" type="Area2D" parent="Level 1" unique_id=1664728023]
+position = Vector2(1079, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level 1/Coin3" unique_id=1090538735]
+sprite_frames = SubResource("SpriteFrames_vijes")
+animation = &"Coin Flipping"
+autoplay = "Coin Flipping"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Coin3" unique_id=1177440927]
+shape = SubResource("CircleShape2D_x47vt")
 
 [node name="Bottom Boundary" type="StaticBody2D" parent="." unique_id=670160146]
 position = Vector2(1079, -845)
